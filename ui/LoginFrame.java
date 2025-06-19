@@ -15,7 +15,7 @@ public class LoginFrame extends JFrame {
 
     public LoginFrame() {
         setTitle("医疗预约管理系统 - 登录");
-        setSize(400, 250);
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // 居中
 
@@ -42,11 +42,21 @@ public class LoginFrame extends JFrame {
         loginButton.setBounds(140, 130, 100, 30);
         panel.add(loginButton);
 
+        JButton registerButton = new JButton("注册");
+        registerButton.setBounds(250, 130, 100, 30);
+        panel.add(registerButton);
+
         getContentPane().add(panel);
 
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 loginAction();
+            }
+        });
+
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new RegistrationFrame().setVisible(true);
             }
         });
     }
@@ -60,7 +70,13 @@ public class LoginFrame extends JFrame {
             JOptionPane.showMessageDialog(this, "登录成功，欢迎 " + user.getRole());
             // 可以跳转到不同主界面
             this.dispose(); // 关闭登录窗口
-            new MainFrame(user).setVisible(true);
+            if ("admin".equals(user.getRole())) {
+                new AdminMainFrame(user).setVisible(true);
+            } else if ("doctor".equals(user.getRole())) {
+                new DoctorMainFrame(user).setVisible(true);
+            } else if ("patient".equals(user.getRole())) {
+                new PatientMainFrame(user).setVisible(true);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "用户名或密码错误");
         }

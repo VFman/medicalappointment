@@ -37,7 +37,7 @@ public class Main {
         // 加载图片
         ImageIcon imageIcon = null;
         try {
-            BufferedImage image = ImageIO.read(new File("D:/java/medicalappointment/OIP.jpg"));
+            BufferedImage image = ImageIO.read(new File("D:/gihtub/medicalappointment/OIP.JPG"));//"D:/gihtub/medicalappointment/OIP.JPG"
             imageIcon = new ImageIcon(image);
         } catch (IOException e) {
             e.printStackTrace();
